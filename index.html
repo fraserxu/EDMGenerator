@@ -341,7 +341,9 @@
         colorButton = '<input type="button" id="colorButton" placeholder="请输入颜色值(示例red/#ccc)" value="设置颜色">',
         banner = '<label for="banner" style="padding-left:20px; color:white; font-family: Microsoft Yahei; font-size:12px;">banner图片：</label><input type="text" class="banner" placeholder="请输入banner图片地址">',
         bannerButton = '<input type="button" id="bannerButton" value="设置banner">',
-        saveButton = '<input style="margin-left:20px" type="button" id="saveButton" value="生成页面"><label for="saveButton"style="color:red; font-family: Microsoft Yahei; font-size:12px;">请使用键盘组合键"Ctrl"+"S"另存页面</label>'
+        saveButton = '<input style="margin-left:20px" type="button" id="saveButton" value="生成页面"><label for="saveButton"style="color:red; font-family: Microsoft Yahei; font-size:12px;">"Ctrl"+"S"另存页面</label>',
+        bannerHrefButton = '<input type="button" id="bannerHrefButton" value="banner链接">',
+        bannerHref = '<label for="bannerHref" style="padding-left:20px; color:white; font-family: Microsoft Yahei; font-size:12px;">banner链接：</label><input type="text" id="bannerHref">'
     
     $('body').attr("contenteditable","false");
     editable.attr("contenteditable","true");
@@ -380,14 +382,11 @@
       $('#editor').append($(inputColor));
       $('#editor').append($(colorButton));
       $('#editor').append($(banner));
+      $('#editor').append($(bannerHref));
       $('#editor').append($(bannerButton));
       $('#editor').append($(saveButton));
       $('#editor').append($(inputSrc));
       $('#editor').append($(srcButton));
-    }
-
-    function setImg (imgSrc) {
-        $('#ba').attr("src",imgSrc);
     }
 
     var inputSrc = '<label for="inputSrc" style="color:white; font-family: Microsoft Yahei; font-size:12px; padding-left:30px">标题链接：</label><input style="margin-bottom:-6px; padding:0; height: 18px;" type="text" id="inputSrc">',
@@ -416,10 +415,6 @@
         $('html').find("script,input,label").remove();
     }
 
-    function addUrl() {
-
-    }
-
     initUI();
 
     $("#colorButton").click(function () {
@@ -427,10 +422,17 @@
         setBg(setColor);
     });
 
+    function setImg (imgSrc, targetHref) {
+        $('#ba').attr("src",imgSrc);
+        $('#ba').parent().attr("href", targetHref);
+    }
+
     $("#bannerButton").click(function () {
-        var imgSrc= $('.banner').val();
-        setImg(imgSrc);
+        var imgSrc = $('.banner').val();
+        var targetHref = $('#bannerHref').val();
+        setImg(imgSrc, targetHref);
     });
+
 
     $("#saveButton").click(function() {
         removeTag();
