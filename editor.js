@@ -16,7 +16,8 @@ $('document').ready(function() {
         bannerHref = '<label for="bannerHref" style="padding-left:20px; color:white; font-family: Microsoft Yahei; font-size:12px;">banner链接：</label><input type="text" id="bannerHref" placeholder="输入banner链接" >',
         inputSrc = '<label for="inputSrc" style="color:white; font-family: Microsoft Yahei; font-size:12px; padding-left:30px">标题链接：</label><input style="margin-bottom:-6px; padding:0; height: 18px;" type="text" id="inputSrc">',
         srcButton = '<input type="button" id="srcButton" value="设置">',
-        editableButton = '<span style="background:#ccc;" id="editableButton">编辑</span>'
+        editableButton = '<span style="background:#ccc;" id="editableButton">编辑</span>',
+        removeButton = '<span style="background:#ccc;" id="removeButton">移除</span>'
     
     $('body').attr("contenteditable","false");
     editable.attr("contenteditable","true");
@@ -120,7 +121,16 @@ $('document').ready(function() {
     $('.editable').hover(function() {
         $(this).css({'border':'1px dashed #46BCD2','cursor':'pointer','position':'relative'});
         $(this).append($(editableButton));
-        $('#editableButton').css({'position':'absolute', 'line-height':'14px','font-size':'12px','padding':'3px','margin':'0px','bottom':'0px','right':'0px','text-indent':'0em'});
+        $(this).append($(removeButton));
+        $('#removeButton').css({'position':'absolute','line-height':'12px','font-size':'12px','padding':'4px','margin':'0px 3px','bottom':'0px','right':'30px','text-indent':'0em'});
+        $('#removeButton').attr('contenteditable','false');
+        $('#removeButton').hover(function() {
+            $(this).css('cursor','pointer');
+        });
+        $('#removeButton').click(function() {
+            $(this).parent().remove();
+        }); 
+        $('#editableButton').css({'position':'absolute', 'line-height':'12px','font-size':'12px','padding':'4px','margin':'0px','bottom':'0px','right':'0px','text-indent':'0em'});
         $('#editableButton').attr('contenteditable','false');
         $('#editableButton').hover(function() {
             $(this).css('cursor','pointer');
@@ -128,10 +138,12 @@ $('document').ready(function() {
         $(this).click(function() {
             $(this).css('cursor','text');
             $('#editableButton').remove();
+            $('#removeButton').remove();
         });
     },function() {
         $(this).css({'border':'none','cursor':'auto'});
         $('#editableButton').remove();
+        $('#removeButton').remove();
     }
 )
 
