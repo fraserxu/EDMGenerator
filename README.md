@@ -1,4 +1,4 @@
-#EDMGenerator 简易EDM邮件生成器r
+#EDMGenerator 简易EDM邮件生成器
 ============
 
 ##目录
