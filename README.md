@@ -1,7 +1,5 @@
-#EDMGenerator
+#EDMGenerator 简易EDM邮件生成器r
 ============
-
-##Simple EDM Generator简易EDM邮件生成器
 
 ##目录
 
@@ -38,7 +36,7 @@
 
 BETA Version
 
-Feel Free To Report Your Bug Here！
+Feel Free To Report Your Bug <a href="http://www.geekpark.net/rhea">Here</a>！
 
 
 
